@@ -1,0 +1,37 @@
+<div id="login_main" ng-show="!adminLogin">
+    <div id="login_background"></div>
+    <form class="ui form ui piled segment" id="login_form">
+        <h4 class="ui dividing header">Scope Admin Login</h4>
+        <div class="field">
+            <label>用户邮箱</label>
+            <input type="email" ng-model="userEmail" required placeholder="邮箱地址">
+        </div>
+        <div class="field">
+            <label>密码</label>
+            <input type="password" ng-model="userPassword" required placeholder="用户密码">
+        </div>
+
+        <div id="login_footer">
+            <button      type="submit" class="ui red basic button" ng-click="loginScope(userEmail,userPassword)">登入</button>
+        </div>
+
+    </form>
+
+    <!--<form id="login_form">-->
+        <!--<div id="login_header">Login Scope</div>-->
+        <!--<div id="login_body">-->
+            <!--<div class="login_section">-->
+                <!--<div class="login_body_title">用户邮箱</div>&lt;!&ndash;-->
+				<!--&ndash;&gt;<div class="login_body_input"><input type="email" ng-model="userEmail" required></div>-->
+                <!--<div class="login_section">-->
+                    <!--<div class="login_body_title">密码</div>&lt;!&ndash;-->
+					<!--&ndash;&gt;<div class="login_body_input"><input type="password" ng-model="userPassword" required></div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div id="login_footer">-->
+            <!--<div id="select_div"><div class="one_select" selected = 'true'>api-cn</div><div class="one_select" ng-attr-selected="{{}}">api</div></div>-->
+            <!--<button type="submit" id="logIn_button" ng-click="loginScope(userEmail,userPassword)">登入</button>-->
+        <!--</div>-->
+    <!--</form>-->
+</div>

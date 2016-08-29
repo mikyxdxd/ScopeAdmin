@@ -1,0 +1,38 @@
+/*#searchTab_main{*/
+
+    /*font-size: 25px;*/
+/*}*/
+
+/*#searchTab_main .one_optiton_tab{*/
+
+    /*display: inline-block;*/
+    /*width: auto;*/
+    /*margin-right: 30px;*/
+    /*padding: 5px;*/
+    /*margin-top: 10px;*/
+/*}*/
+
+/*#searchTab_main .one_optiton_tab:hover{*/
+
+    /*color:white;*/
+    /*background-color: #EC5D3B;*/
+    /*cursor: pointer;*/
+/*}*/
+
+/*#searchTab_main .one_optiton_tab[select='true']{*/
+
+    /*color:white;*/
+    /*background-color: #EC5D3B;*/
+
+/*}*/
+
+/*!*#searchTab_main input{*!*/
+
+    /*!*background-color: transparent;*!*/
+    /*!*border:none;*!*/
+    /*!*border-bottom:1px dashed grey;*!*/
+/*!*}*!*/
+
+/*#searchTab_main input:focus{*/
+    /*outline-width: 0px;*/
+/*}*/

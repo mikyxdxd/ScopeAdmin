@@ -1,0 +1,173 @@
+<style type="text/css">
+
+    #detailPhotoContainer_main{
+
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    #detailPhotoContainer_container{
+
+        width: 500px;
+        height: 500px;
+        text-align: center;
+        position: relative;
+        background: #E4E4E4;
+        overflow: hidden;
+    }
+
+    #detailPhotoContainer_container img{
+
+        width: 100%;
+        height: auto;
+        display: inline-block;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+    }
+
+    #detailPhotoContainer_bg{
+
+
+        position: absolute;
+        top: 0;
+        width:100%;
+        height: 100%;
+        background-color: grey;
+        opacity: 0.9;
+    }
+
+    .user_avatar{
+
+        display: inline-block;
+        width: 30px;
+    }
+
+    .user_avatar img{
+
+        width: 100%;
+        height: auto;
+    }
+
+    #detailPhotoContainer{
+
+        position: absolute;
+        height: 780px;
+        width: 500px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background: transparent;
+
+    }
+
+    .info_section{
+
+        padding: 5px;
+        color: #B56B6B;
+    }
+
+    .info_section span{
+
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    #detailPhotoContainer_imageInfo{
+
+        background: white;
+        font-size: 16px;
+        height: 280px;
+        overflow: auto;
+        padding-bottom: 20px;
+    }
+
+    .info_title,.info_content{
+
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .info_title{
+
+        width: 25%;
+        color: black;
+
+    }
+
+    .info_content{
+
+        width: 75%;
+    }
+
+    #loading_animation{
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        font-size: 50px;
+        color: white;
+    }
+
+
+</style>
+<div id="detailPhotoContainer_main">
+    <div id="detailPhotoContainer_bg" ng-click="back()"></div>
+    <div id="detailPhotoContainer">
+        <div id="loading_animation" ng-show="!image"><i class="fa fa-spinner faa-spin animated"></i></div>
+        <div id="detailPhotoContainer_container" ng-show="image">
+            <img ng-src="{{image.retina.fileName}}" ng-style="image.retina.height >= image.retina.width  && {'height':'100%','width':'auto'}  || image.retina.height < image.retina.width && {'height':'auto','width':'100%'}">
+        </div>
+        <div id="detailPhotoContainer_imageInfo" ng-show="image">
+            <div class="info_section">
+                <div class="info_title">Caption:</div>
+                <div class="info_content" ng-bind="image.caption"></div>
+            </div>
+            <div class="info_section">
+                <div class="info_title">Description:</div>
+                <div class="info_content" ng-bind="image.description"></div>
+            </div>
+            <div class="info_section">
+                <div class="info_title">Owner:</div>
+                <div class="info_content">
+                    {{image.owner.name}}
+                    <div class="user_avatar">
+                        <image ng-src="{{image.owner.avatar}}">
+                    </div>
+                </div>
+            </div>
+            <div class="info_section">
+                <div class="info_title">Location:</div>
+                <div class="info_content">Location:<span ng-bind="image.location.address + '  '"></span>Latitude<span ng-bind="image.location.latitude + '  '"></span>longitude<span ng-bind="image.location.longitude"></span></div>
+            </div>
+            <div class="info_section">
+                <div class="info_title">View:</div>
+                <div class="info_content" ng-bind="image.stats.viewCount"></div>
+            </div>
+            <div class="info_section">
+                <div class="info_title">Likes:</div>
+                <div class="info_content" ng-bind="image.stats.likeCount"></div>
+            </div>
+            <div class="info_section">
+                <div class="info_title">Comment:</div>
+                <div class="info_content" ng-bind="image.stats.commentCount"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,479 @@
+<style type="text/css">
+    #featureManagement_title{
+
+        padding: 1%;
+        font-size: 30px;
+        width: auto;
+        border-right: 4px solid #5F8870;
+        display: inline-block;
+        margin-bottom: 25px;
+        margin-top: 25px;
+        display: inline-block;
+        width: 25%;
+        vertical-align: bottom;
+    }
+
+
+    #loading_animation{
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        font-size: 50px;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+    }
+
+    .feature_editing_section{
+
+        padding-bottom: 20px;
+    }
+
+    .enable_feature_div{
+
+        position: absolute;
+        z-index: 0;
+        right: 0;
+        top: 0;
+    }
+
+    #new_feature_div{
+
+        text-align: right;
+
+    }
+
+    #new_feature_div button{
+
+        display: inline-block;
+        width: auto;
+        margin-left: 5%;
+        background-color: transparent;
+        border: 1px solid black;
+    }
+
+    #new_feature_div button:hover{
+
+        background-color: #EC5D3B;
+        color:white;
+        border: 1px solid #EC5D3B;
+
+    }
+
+    .enable_feature_div button{
+
+        background-color: transparent;
+        border: none;
+    }
+
+    .enable_feature_div button>i{
+
+        margin-right: 5px;
+    }
+
+    .one_feature{
+
+        padding: 2%;
+        padding-bottom: 5px;
+        font-size: 15px;
+        background-color: white;
+        list-style: none;
+        margin-top: 10px;
+        position: relative;
+    }
+
+    .feature_content input{
+
+        border:none;
+        width: 90%;
+        border-bottom: 1px dashed;
+
+    }
+
+    .feature_content input:focus{
+
+        outline-width: 0px;
+    }
+
+    .one_feature_section{
+
+        display: inline-block;
+        width: 40%;
+        vertical-align: top;
+    }
+
+    .feature_title,.feature_content{
+
+        display: inline-block;
+        width: 50%;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .feature_content{
+
+        color: #EC5D3B;
+
+    }
+
+    .one_feature_section_left.item  .feature_content{
+
+        width: 100%;
+    }
+
+    .one_feature_section_right,.one_feature_section_left{
+
+        display: inline-block;
+        width: 80%
+    }
+
+    .one_feature_section_right{
+
+        width: 20%;
+    }
+
+    .panel-default{
+
+        border-color: transparent;
+        box-shadow: 1px 1px 1px white;
+        margin:0;
+    }
+
+    .border-top-color{
+
+        border-color: transparent;
+    }
+
+
+    .panel-default>.panel-heading{
+
+        display: none;
+    }
+
+    .featurn_show_list{
+
+        margin-top: 10px;
+        padding: 5px;
+
+    }
+
+    .featurn_item_list{
+
+        margin-top: 15px;
+        padding: 10px;
+    }
+
+    .featurn_show_list i{
+
+        float: right;
+    }
+
+
+    .one_feature_section_left.item{
+
+        width: 65%;
+        margin-left: 5%;
+    }
+
+    .list_item_cover {
+
+        display: inline-block;
+        width: 30%;
+        vertical-align: top;
+    }
+
+    .list_item_cover img{
+
+        width: 100%;
+        height: auto;
+
+    }
+
+    .one_feature_section_right.item{
+
+        text-align: right;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .one_feature_section_right.item button{
+
+        width: 10%;
+        margin-left: 2%;
+
+    }
+
+
+    .featurn_show_list:hover{
+
+        background-color:  #EC5D3B;
+        color: white;
+        cursor: pointer;
+
+    }
+    .one_feature_section_right button{
+
+
+        display: inline-block;
+        width: 40%;
+        margin-left: 5%;
+        background-color: transparent;
+        border:1px solid black;
+    }
+
+    .one_feature_section_right button:hover{
+
+        background-color: #EC5D3B;
+        color:white;
+        border: #EC5D3B;
+    }
+
+    .one_feature button:active{
+
+        outline-width: 0px;
+    }
+
+    .one_feature button:focus{
+
+        outline-width: 0px;
+    }
+
+    .one_feature_list_item{
+
+        margin-top: 15px;
+        list-style: none;
+        padding: 10px;
+        border-bottom: 1px solid gainsboro;
+    }
+
+    .panel-body{
+
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .feature_item{
+
+        padding: 0;
+    }
+
+
+
+
+</style>
+<div id="loading_animation" ng-show="!featureCtr.featureArr"><i class="fa fa-spinner faa-spin animated"></i></div>
+
+<div id="featureManagement_main" ng-show="featureCtr.featureArr">
+
+    <div id="featureManagement_title">
+
+        Feature Management
+
+    </div>
+
+    <div id="new_feature_div"><button ng-click="addNewScope()">Add New Feature</button></div>
+
+    <div id="featureManagement_list">
+
+        <li class="one_feature" ng-repeat="feature in featureCtr.featureArr">
+            <div class="enable_feature_div"><button ng-show="feature.enabled" ng-click="ableScope(feature)"><i class="fa fa-eye"></i>Enable</button><button ng-show="!feature.enabled" ng-click="ableScope(feature)"><i class="fa fa-eye-slash"></i>Disable</button></div>
+
+            <div class="feature_editing_section" ng-show="feature.showEditing" >
+
+                <div class="one_feature">
+                    <div class = "one_feature_section_left">
+                        <div class="one_feature_section">
+                            <div class="feature_title">ID:</div><!--
+						--><div class="feature_content">{{feature.id}}</div>
+                        </div><!--
+
+						--><div class="one_feature_section">
+                        <div class="feature_title">Feature Label:</div><!--
+						--><div class="feature_content"><input ng-model="feature.featureCp.label"></div>
+                    </div>
+
+                        <br>
+                        <div class="one_feature_section">
+                            <div class="feature_title">Sequence #:</div><!--
+						--><div class="feature_content"><input ng-model="feature.featureCp.sequence"></div>
+                        </div><!--
+
+						--><div class="one_feature_section">
+                        <div class="feature_title">Item Count:</div><!--
+						--><div class="feature_content">{{feature.itemList.length}}</div>
+                    </div>
+                    </div><!--
+
+						--><div class = "one_feature_section_right">
+
+                    <button ng-click="updateFeature(feature)">Update</button>
+                    <button ng-click="feature.showEditing = false">Cancel</button>
+                </div>
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+            <div class="one_feature" ng-show="!feature.showEditing">
+                <div class = "one_feature_section_left">
+                    <div class="one_feature_section">
+                        <div class="feature_title">ID:</div><!--
+					--><div class="feature_content">{{feature.id}}</div>
+                    </div><!--
+
+					--><div class="one_feature_section">
+                    <div class="feature_title">Feature Label:</div><!--
+					--><div class="feature_content">{{feature.label}}</div>
+                </div>
+
+                    <br>
+                    <div class="one_feature_section">
+                        <div class="feature_title">Sequence #:</div><!--
+					--><div class="feature_content">{{feature.sequence}}</div>
+                    </div><!--
+
+					--><div class="one_feature_section">
+                    <div class="feature_title">Item Count:</div><!--
+					--><div class="feature_content">N/A</div>
+                </div>
+                </div><!--
+
+					--><div class = "one_feature_section_right">
+
+                <button ng-click="featureEdit(feature)">Edit</button>
+                <button ng-click="deleteFeature(feature,$index)">Delete</button>
+            </div>
+            </div>
+
+
+            <div class="featurn_item_list" ng-show="!feature.showEditing">
+                <div ng-click="
+												getItemList(feature);
+										" class="featurn_show_list"><span>Item list</span><i class="fa fa-sort-desc"></i></div>
+                <uib-accordion close-others="false">
+                    <uib-accordion-group ng-click is-open="feature.open">
+                        <ul class="feature_item">
+
+
+                            <li class="one_feature_list_item" ng-repeat="item in feature.itemList">
+
+
+
+                                <div class="list_item_editing" ng-show="item.showEditing">
+
+                                    <div class="list_item_cover">
+
+                                        <img ng-src="{{item.itemCp.imagePath?item.itemCp.imagePath:item.itemCp.imagePath}}">
+
+                                    </div><!--
+
+							--><div class = "one_feature_section_left item">
+                                    <div class="one_feature_section">
+                                        <div class="feature_title">ID:</div><!--
+							--><div class="feature_content">{{item.id}}</div>
+                                    </div><!--
+
+							--><div class="one_feature_section">
+                                    <div class="feature_title">Item Label:</div><!--
+							--><div class="feature_content"><input ng-model="item.itemCp.label"></div>
+                                </div>
+
+                                    <br>
+                                    <div class="one_feature_section">
+                                        <div class="feature_title">Sequence #:</div><!--
+							--><div class="feature_content"><input ng-model="item.itemCp.sequence"></div>
+                                    </div><!--
+
+							--><div class="one_feature_section">
+                                    <div class="feature_title">Item Type:</div><!--
+							--><div class="feature_content">{{item.featureType}}</div>
+                                </div><!--
+
+							--><div class="one_feature_section" style="width:100%">
+                                    <div class="one_feature_section" style="width:100%">
+                                        <div class="feature_title">Image Path:</div><div class = "item_image_path"><div class="feature_content" style="width:100%"><input ng-model="item.itemCp.imagePath"></div></div>
+                                    </div>
+                                </div>
+
+
+                                </div><!--
+
+							--><div class = "one_feature_section_right item">
+
+                                    <button ng-click="updateItem(item,feature)">Update</button>
+                                    <button ng-click="item.showEditing = false">Cancel</button>
+                                </div>
+
+
+                                </div>
+
+
+
+
+
+
+                                <div class="list_item_view" ng-show="!item.showEditing">
+
+                                    <div class="list_item_cover">
+
+                                        <img ng-src="{{item.imagePath}}">
+
+                                    </div><!--
+
+							--><div class = "one_feature_section_left item">
+                                    <div class="one_feature_section">
+                                        <div class="feature_title">ID:</div><!--
+							--><div class="feature_content">{{item.id}}</div>
+                                    </div><!--
+
+							--><div class="one_feature_section">
+                                    <div class="feature_title">Item Label:</div><!--
+							--><div class="feature_content">{{item.label}}</div>
+                                </div>
+
+                                    <br>
+                                    <div class="one_feature_section">
+                                        <div class="feature_title">Sequence #:</div><!--
+							--><div class="feature_content">{{item.sequence}}</div>
+                                    </div><!--
+
+							--><div class="one_feature_section">
+                                    <div class="feature_title">Item Type:</div><!--
+							--><div class="feature_content">{{item.featureType}}</div>
+                                </div>
+                                </div><!--
+
+							--><div class = "one_feature_section_right item">
+
+                                    <button ng-click="itemEdit(item)">Edit</button>
+                                    <button ng-click="deleteItem(item,feature,$index)">Delete</button>
+                                </div>
+
+
+
+                                </div>
+
+
+
+
+
+                            </li>
+                        </ul>
+                    </uib-accordion-group>
+                </uib-accordion>
+            </div>
+        </li>
+
+        </ul>
+    </div>
+</div>

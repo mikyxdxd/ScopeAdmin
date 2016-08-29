@@ -1,0 +1,54 @@
+#system_title{
+
+    padding: 1%;
+    font-size: 30px;
+    width: auto;
+    border-right: 4px solid #5F8870;
+    display: inline-block;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    display: inline-block;
+    width: 25%;
+    vertical-align: bottom;
+}
+
+
+#loading_animation{
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    font-size: 50px;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+
+.system_info_section{
+
+    display: inline-block;
+    width: 50%;
+    font-size: 16px;
+    opacity: 1;
+}
+
+
+.ng-hide-add{
+
+    transition:opacity ease 0.5s;
+}
+
+.ng-hide{
+
+    opacity: 0;
+
+}
+
+.info_title,.info_content{
+
+    display: inline-block;
+    width: 50%;
+}

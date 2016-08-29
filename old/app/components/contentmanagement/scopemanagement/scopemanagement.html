@@ -1,0 +1,205 @@
+<style type="text/css">
+
+    #scopeManament_title{
+
+        padding: 1%;
+        font-size: 30px;
+        width: auto;
+        border-right: 4px solid #5F8870;
+        display: inline-block;
+        margin-bottom: 25px;
+        margin-top: 25px;
+        display: inline-block;
+        width: 25%;
+        vertical-align: bottom;
+    }
+
+    .userName_userAvatar{
+
+        position: absolute;
+        width: auto;
+        top: 0px;
+        right: 0px;
+        background: white;
+        padding: 2%;
+        text-align: right;
+        z-index: 0;
+
+    }
+
+    .userName_userAvatar .userName,.userAvatar{
+
+        display: inline-block;
+        font-size: 14px;
+    }
+
+    .userName{
+
+        width: auto;
+    }
+
+    .userAvatar{
+
+        width: 25px;
+        border-radius: 50px;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+    .userAvatar img{
+
+        width: 100%;
+    }
+
+
+    ul{
+
+        padding-left: 0;
+    }
+
+    .scopeManagement_one_scope{
+
+        width: 23%;
+        margin-left: 1.5%;
+        margin-top: 15px;
+        list-style: none;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .scopeManagement_one_scope.loaded{
+
+        opacity:1;
+
+    }
+
+    .scope_cover_photo{
+
+        width: 100%;
+    }
+
+    .scope_cover_photo img{
+
+        width: 100%;
+        height: auto;
+    }
+
+    .scope_info_title,.scope_info_content{
+
+        display: inline-block;
+        width: 49%;
+    }
+
+    .scope_info_container{
+
+        padding: 3%;
+        border: 1px solid gainsboro;
+        border-top: none;
+    }
+
+    .scope_button_group{
+
+        text-align: right;
+        margin-top: 12px;
+    }
+
+
+    .scope_button_group button{
+
+        background-color: transparent;
+        border: none;
+        border-left: 1px solid #EC5D3B;
+        margin-left: -5px;
+    }
+
+    .scope_button_group button:hover{
+
+        background-color: gainsboro;
+        font-weight: bold;
+    }
+
+    .scope_button_group button:focus,button:active{
+
+        outline-width: 0;
+    }
+
+    #updating{
+
+        text-align: center;
+        font-size: 35px;
+        color: #EC5D3B;
+    }
+
+    .ng-hide{
+
+        opacity: 0;
+
+    }
+
+    #loading_animation{
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        font-size: 50px;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+    }
+
+</style>
+
+
+<div id="loading_animation" ng-show="!scopeCtr.scopeArr"><i class="fa fa-spinner faa-spin animated"></i></div>
+
+<div id="scopeManagement_main" scroll ng-show="scopeCtr.scopeArr">
+    <div id="scopeManament_title">
+        Scope Management
+    </div><!--
+	--><div searchtab style="display:inline-block; width:75%; text-align:right" optionList="tag,id,location,userId" sender="scopemanagement"></div>
+
+    <ul id="scopeManagement_imageList" masonry="{ transitionDuration: '0s' }">
+        <li class="scopeManagement_one_scope masonry-brick" ng-repeat="scope in scopeCtr.scopeArr">
+            <div class="scope_cover_photo">
+                <img ng-src="{{scope.coverImage}}">
+            </div>
+            <div class="scope_info_container">
+                <div class="scope_info_section">
+                    <div class="scope_info_title">Id:</div>
+                    <div class="scope_info_content" ng-bind="scope.id"></div>
+                </div>
+                <div class="scope_info_section">
+                    <div class="scope_info_title">Caption:</div>
+                    <div class="scope_info_content" ng-bind="scope.caption"></div>
+                </div>
+                <div class="scope_info_section">
+                    <div class="scope_info_title">ShareType:</div>
+                    <div class="scope_info_content" ng-bind="scope.shareType"></div>
+                </div>
+                <div class="scope_info_section">
+                    <div class="scope_info_title">SourceType:</div>
+                    <div class="scope_info_content" ng-bind="scope.sourceType"></div>
+                </div>
+
+                <div class="scope_button_group">
+                    <button ng-click="showDetailScope(scope)">Edit/Feature</button>
+                    <button ng-click="showMedias(scope)"><a ng-href="{{'#/photoManagement?searchType=scopeId&searchContent=' + scope.id}}">Medias</a></button>
+                    <button>Delete</button>
+                </div>
+
+            </div>
+
+            <div class="userName_userAvatar">
+                <div class="userName" ng-bind="scope.owner.name"></div><!--
+				--><div class="userAvatar"><img ng-src="{{scope.owner.avatar}}"></div>
+            </div>
+
+        </li>
+    </ul>
+    <div ng-show="updating" id="updating"><i class="fa fa-spinner faa-spin animated"></i></div>
+    <div ui-view></div>
+</div>

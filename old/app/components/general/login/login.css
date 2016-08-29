@@ -1,0 +1,137 @@
+#login_main{
+
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+#login_background{
+
+
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background: #fafafa;
+    opacity: 0.2;
+}
+
+#login_form{
+
+    position: absolute;
+    width: 500px;
+    height: 250px;
+    background-color: white;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#login_header{
+
+    padding-top: 3%;
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+#login_body{
+
+    padding:5%;
+}
+
+.login_body_title,.login_body_input{
+
+    display: inline-block;
+    width: 30%;
+    font-size: 20px;
+}
+
+.login_body_input{
+
+    width: 50%;
+    margin-left: 10%;
+}
+
+.login_body_input input{
+
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+
+}
+
+.login_body_input input:focus{
+
+    outline-width: 0px;
+}
+.login_section{
+
+    margin-top: 5px;
+    background-color: brown;
+    padding: 10px;
+    color:white;
+}
+
+#login_footer{
+
+    padding: 0%;
+
+}
+
+#login_footer button:active{
+
+    outline-width: 0px;
+}
+
+#login_footer button:focus{
+
+    outline-width: 0px;
+}
+
+
+#login_footer button:hover{
+
+    color:green;
+}
+
+
+#login_footer{
+
+    text-align: right;
+}
+
+#login_footer button{
+
+    display: inline-block;
+    width: auto;
+    background-color: transparent;
+    border: 0px;
+}
+
+#login_footer #cancel_button:hover{
+
+    font-weight:bolder;
+    color:red;
+}
+
+.one_select[selected = 'true']{
+
+    border-bottom: 2px solid red;
+}
+
+.one_select:hover{
+
+    border-bottom: 2px solid red;
+    cursor: pointer;
+}
+
+.one_select{
+
+    display: inline-block;
+    width:auto;
+    font-size: 20px;
+    margin-left: 20px;
+}

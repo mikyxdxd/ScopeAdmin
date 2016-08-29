@@ -1,0 +1,25 @@
+<div id="searchTab_main">
+
+
+    <div class="ui right action left icon input">
+        <i class="search icon"></i>
+        <!--<form ng-submit = "doSearch(saerchContent)">-->
+            <input type="text" placeholder="Search" ng-model="saerchContent" ng-keypress="($event.which === 13)?doSearch(saerchContent):0">
+        <!--</form>-->
+        <div class="ui basic floating dropdown button">
+            <div class="text">tag</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="item" ng-repeat="option in optionList" ng-bind="option" ng-click="changeSearchType(option)"></div>
+                <!--<div class="item">This Organization</div>-->
+                <!--<div class="item">Entire Site</div>-->
+            </div>
+        </div>
+    </div>
+    <!--<form ng-submit = "doSearch(saerchContent)">-->
+        <!--Search: <input ng-model="saerchContent">-->
+    <!--</form>-->
+    <!--<div id="option_list">-->
+        <!--<div class="one_optiton_tab" ng-repeat="option in optionList" ng-bind="option" ng-click="changeSearchType(option)" ng-attr-select="{{searchType == option && 'true'||'false'}}"></div>-->
+    <!--</div>-->
+</div>

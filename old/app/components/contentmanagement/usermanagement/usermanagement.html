@@ -1,0 +1,175 @@
+<style type="text/css">
+
+    #userManament_title{
+
+        padding: 1%;
+        font-size: 30px;
+        width: auto;
+        border-right: 4px solid #5F8870;
+        display: inline-block;
+        margin-bottom: 25px;
+        margin-top: 25px;
+        display: inline-block;
+        width: 25%;
+        vertical-align: bottom;
+    }
+
+    ul{
+
+        padding: 0;
+    }
+
+    .userManagement_oneUser{
+
+        list-style-type: none;
+        width: 23%;
+        margin-left: 1%;
+        margin-top: 10px;
+        border: 1px solid gainsboro;
+        opacity: 0;
+        transition:opacity 1s;
+    }
+
+    .userManagement_oneUser img{
+
+        width: 100%;
+        height: auto;
+    }
+
+    .userInfo_section{
+
+        display: inline-block;
+        width: 100%;
+    }
+
+    .userInfo_container{
+
+        padding: 15px;
+        background-color: #F7F7F7;
+    }
+
+    .userInfo_section .userInfo_title,.userInfo_content{
+
+        display: inline-block;
+        width: auto;
+    }
+
+    .userManagement_buttons{
+
+        margin-top: 5px;
+        margin-bottom: 5px;
+        text-align: right;
+    }
+
+    .userManagement_buttons button{
+
+        background-color: transparent;
+        border: none;
+        border-left: 1px solid gainsboro;
+        margin-left: -5px;
+    }
+
+    .userManagement_buttons button:active{
+
+        outline-width: 0px;
+    }
+
+    .userManagement_oneUser.ng-scope.loaded{
+
+        opacity: 1;
+    }
+
+    .userManagement_buttons button:focus{
+
+        outline-width: 0px;
+    }
+
+    .userManagement_buttons button:hover{
+
+        background-color: #EC5D3B;
+        font-weight: bolder;
+        color:white;
+    }
+
+    .userManagement_buttons button:active{
+
+        outline-width: 0px;
+    }
+
+    .userInfo_content{
+
+        font-weight: bolder;
+    }
+
+    #loading_animation{
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        font-size: 50px;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+    }
+
+
+</style>
+
+
+<div id="loading_animation" ng-show="!userCtr.userArr"><i class="fa fa-spinner faa-spin animated"></i></div>
+
+<div id="userManagement_main" scroll ng-show="userCtr.userArr">
+
+    <div id="userManament_title">
+        User Management
+    </div><!--	--><div searchtab style="display:inline-block; width:75%; text-align:right" optionList="name,id" sender="usermanagement"></div>
+
+
+    <ul id="userManagement_userList" masonry="{ transitionDuration: '0s' }">
+        <li class="userManagement_oneUser masonry-brick" ng-repeat="user in userCtr.userArr">
+
+            <div class="userAva_container"><image ng-src="{{user.avatar}}"></div>
+            <div class="userInfo_container">
+
+
+                <div class="userInfo_section">
+
+                    <div class="userInfo_title">Id:</div>
+                    <div class="userInfo_content" ng-bind="user.id"></div>
+                </div><!--
+
+				--><div class="userInfo_section">
+
+                <div class="userInfo_title">Name:</div>
+                <div class="userInfo_content" ng-bind="user.name"></div>
+            </div><!--
+
+				--><div class="userInfo_section">
+
+                <div class="userInfo_title">Username:</div>
+                <div class="userInfo_content" ng-bind="user.username"></div>
+            </div><!--
+
+				--><div class="userInfo_section">
+
+                <div class="userInfo_title">Role:</div>
+                <div class="userInfo_content" ng-bind="user.role"></div>
+            </div>
+
+            </div>
+
+
+            <div class="userManagement_buttons">
+
+                <button ng-click="showDetailUser(user)">Edit</button>
+                <button><a ng-href="{{'#/scopeManagement?searchType=userId&searchContent=' + user.id }}">Scopes</a></button>
+                <button ng-click="toUserMedia(user)">Medias</button>
+
+            </div>
+        </li>
+    </ul>
+    <div ui-view></div>
+</div>

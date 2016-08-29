@@ -1,0 +1,24 @@
+<div id="loading_animation" ng-show="!mediaCount || !scopeCount || !userCount"><i class="fa fa-spinner faa-spin animated"></i></div>
+<div id="system_main" ng-show="mediaCount && scopeCount && userCount">
+    <div id="system_title">System Info</div>
+    <div id="system_info_container" class="container">
+        <div class="system_info_section">
+            <div class="info_title" ng-bind="'Media Count'">
+            </div><!--
+			--><div class="info_content" ng-bind="mediaCount">
+        </div>
+        </div>
+        <div class="system_info_section">
+            <div class="info_title" ng-bind="'Scope Count'">
+            </div><!--
+			--><div class="info_content" ng-bind="scopeCount">
+        </div>
+        </div>
+        <div class="system_info_section">
+            <div class="info_title" ng-bind="'User Count'">
+            </div><!--
+			--><div class="info_content" ng-bind="userCount">
+        </div>
+        </div>
+    </div>
+</div>

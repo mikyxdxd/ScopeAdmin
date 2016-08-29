@@ -1,0 +1,32 @@
+.ui.inverted.menu{
+
+    border-radius: 0;
+}
+#header_main{
+
+    position: fixed;
+    padding: 0%;
+    width: 100%;
+    background: white;
+    opacity: 1;
+    z-index: 1;
+    top: 0;
+    min-width: 1000px;
+}
+
+.item{
+
+    cursor: pointer;
+}
+
+.item:hover{
+
+    color:black !important;
+    background:#fafafa !important;
+}
+
+.item.logout{
+
+    position: absolute !important;
+    right: 0 !important;
+}

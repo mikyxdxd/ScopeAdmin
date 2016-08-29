@@ -1,0 +1,262 @@
+<style type="text/css">
+
+    #detailUserContainer_main{
+
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    #detailUserContainer_container{
+
+        width: 100%;
+        height: 200px;
+        text-align: center;
+        position: relative;
+        background: #E4E4E4;
+    }
+
+    #detailUserContainer_container img{
+
+        height: 100%;
+        display: inline-block;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+    }
+
+    #detailUserContainer_bg{
+
+
+        position: absolute;
+        top: 0;
+        width:100%;
+        height: 100%;
+        background-color: grey;
+        opacity: 0.9;
+    }
+
+    .user_avatar{
+
+        display: inline-block;
+        width: 30px;
+    }
+
+    .user_avatar img{
+
+        width: 100%;
+        height: auto;
+    }
+
+    #detailUserContainer{
+
+        position: absolute;
+        height: 680px;
+        width: 500px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        padding-top: 50px;
+        background: transparent;
+
+    }
+
+    .info_section{
+
+        width: 100%;
+        display: inline-block;
+        text-align: left;
+        padding: 5px;
+        color: #B56B6B;
+    }
+
+    .info_section span{
+
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    #detailUserContainer_userInfo{
+
+        background: white;
+        font-size: 16px;
+        height: 430px;
+        overflow: auto;
+        padding: 2%;
+    }
+
+    #detailUserContainer_userInfo input{
+
+        border: none;
+        border-bottom: 1px dashed grey;
+        width: 80%;
+    }
+
+    .info_title,.info_content{
+
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .info_title{
+
+        width: auto;
+        color: black;
+
+    }
+
+    .info_content{
+
+        width: 100%;
+    }
+
+    #userManagement_control{
+
+        text-align: right;
+    }
+
+    #userManagement_control button{
+
+        background-color: transparent;
+        border:none;
+        background-color: #EC5D3B;
+        color:white;
+    }
+
+    #userManagement_control button:active{
+
+        outline-width: 0px;
+
+    }
+
+    #userManagement_control button:focus{
+
+        outline-width: 0px;
+    }
+
+    #loading_animation{
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        font-size: 50px;
+        color: white;
+    }
+
+
+</style>
+<div id="detailUserContainer_main">
+    <div id="detailUserContainer_bg" ng-click="back()"></div>
+    <div id="detailUserContainer" ng-show="!currentUser">
+        <div id="loading_animation"><i class="fa fa-spinner faa-spin animated"></i></div>
+    </div>
+    <div id="detailUserContainer" ng-show="currentUser">
+        <div id="detailUserContainer_container" ng-show="!currentUser.showEditing">
+            <img ng-src="{{currentUser.avatar}}" ng-style="image.retina.height >= image.retina.width  && {'height':'100%','width':'auto'}  || image.retina.height < image.retina.width && {'height':'auto','width':'100%'}">
+        </div>
+        <div id="detailUserContainer_container" ng-show="currentUser.showEditing">
+            <img ng-src="{{currentUser.currentUserCp.avatar?currentUser.currentUserCp.avatar:currentUser.currentUserCp.avatar}}" ng-style="image.retina.height >= image.retina.width  && {'height':'100%','width':'auto'}  || image.retina.height < image.retina.width && {'height':'auto','width':'100%'}">
+        </div>
+        <div id="detailUserContainer_userInfo" style="padding:2% !important;">
+            <div id="display_div" ng-show="!currentUser.showEditing">
+                <div class="info_section" style="width:90% !important;">
+                    <div class="info_title">Name:</div>
+                    <div class="info_content" ng-bind="currentUser.name"></div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Id:</div>
+                    <div class="info_content" ng-bind="currentUser.id"></div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Email:</div>
+                    <div class="info_content">{{currentUser.email}}</div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Role:</div>
+                    <div class="info_content">{{currentUser.role}}</div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Username:</div>
+                    <div class="info_content">{{currentUser.username}}</div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Phone:</div>
+                    <div class="info_content">{{currentUser.phone.phoneNumber}}</div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">website:</div>
+                    <div class="info_content">{{currentUser.website}}</div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">status:</div>
+                    <div class="info_content">{{currentUser.status}}</div>
+                </div>
+                <div id="userManagement_control">
+                    <button ng-click="showEditing(currentUser)">Edit</button>
+                    <button ng-click="back()">Cancel</button>
+                </div>
+            </div>
+            <div id="edit_div" ng-show="currentUser.showEditing">
+                <div class="info_section">
+                    <div class="info_title">User Avatar Path:</div>
+                    <div class="info_content"><input ng-model="currentUser.currentUserCp.avatar"></div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Name:</div>
+                    <div class="info_content"><input ng-model="currentUser.currentUserCp.name"></div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Id:</div>
+                    <div class="info_content" ng-bind="currentUser.id"></div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Email:</div>
+                    <div class="info_content">
+                        <input ng-model="currentUser.currentUserCp.email">
+                    </div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Role:</div>
+                    <div class="info_content">
+                        <input ng-model="currentUser.currentUserCp.role">
+                    </div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Username:</div>
+                    <div class="info_content">{{currentUser.username}}</div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">Phone:</div>
+                    <div class="info_content"><input ng-model="currentUser.currentUserCp.phone.phoneNumber"></div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">website:</div>
+                    <div class="info_content"><input ng-model="currentUser.currentUserCp.website"></div>
+                </div>
+                <div class="info_section">
+                    <div class="info_title">status:</div>
+                    <div class="info_content"><input ng-model="currentUser.currentUserCp.status"></div>
+                </div>
+                <div id="userManagement_control">
+                    <button ng-click="updateUser(currentUser)">Update</button>
+                    <button ng-click="cancelEditing(currentUser)">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

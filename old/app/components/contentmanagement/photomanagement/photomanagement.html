@@ -1,0 +1,212 @@
+<style type="text/css">
+    #photoManagement_main ul{
+
+        padding: 0;
+    }
+
+    #photoManagement_main li{
+
+        list-style-type: none;
+    }
+
+    #photoManament_title{
+
+        padding: 1%;
+        font-size: 30px;
+        width: auto;
+        display: inline-block;
+        margin-bottom: 25px;
+        margin-top: 25px;
+        display: inline-block;
+        width: 25%;
+    }
+
+    #photoManagement_main label{
+
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: bolder;
+        font-family: sans-serif;
+    }
+
+    #photoManagement_main .userName_userAvatar{
+
+        position: absolute;
+        width: auto;
+        top: 0px;
+        right: 0px;
+        background: white;
+        padding: 2%;
+        text-align: right;
+        z-index: 0;
+
+    }
+
+    #photoManagement_main .ui.card>.extra, .ui.cards>.card>.extra{
+
+        text-align: right;
+    }
+
+    #photoManagement_main .userName_userAvatar .userName,.userAvatar{
+
+        display: inline-block;
+        font-size: 14px;
+    }
+
+    .userName{
+
+        width: auto;
+    }
+
+    .userAvatar{
+
+        width: 25px;
+        border-radius: 50px;
+        overflow: hidden;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+
+    .photoInfoContainer{
+
+        background: white;
+        padding: 5px;
+        border: 1px solid gainsboro;
+    }
+
+    .photoEditFooter{
+
+        padding: 5px;
+        text-align: right;
+        background: #EC5D3B;
+        color: white;
+        font-size: 15px;
+    }
+
+    .photoEditFooter button{
+
+        display: inline-block;
+        width: auto;
+        margin-right: 10px;
+        background-color: transparent;
+        border: 1px solid white;
+    }
+
+
+    .photoInfo_section{
+
+        padding: 2px;
+        color: black;
+        font-size: 17px;
+    }
+
+
+    .photoManagement_oneImage{
+
+        width: 24% !important;
+        margin-left: 1% !important;
+        margin-top: 1% !important;
+        margin-bottom: 0px !important;
+        display: inline-block;
+        opacity: 0;
+        transition:opacity 1s;
+    }
+
+
+    .photoManagement_oneImage.masonry-brick.loaded{
+
+        opacity: 1;
+    }
+
+    .photoManagement_oneImage img{
+
+        width: 100%;
+        height: auto;
+
+    }
+
+    #updating{
+
+        text-align: center;
+        font-size: 35px;
+        color: #EC5D3B;
+    }
+    #loading_animation.ng-hide-add{
+
+        transition:opacity ease 0.5s;
+    }
+
+    #loading_animation.ng-hide{
+
+        opacity: 0;
+
+    }
+
+    #loading_animation{
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        font-size: 50px;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+    }
+
+</style>
+
+<div id="loading_animation" ng-show="!imageCtr.imageArr"><i class="fa fa-spinner faa-spin animated"></i></div>
+
+<div id="photoManagement_main" scroll ng-show="imageCtr.imageArr">
+
+    <div id="photoManament_title">
+        <h2 class="ui icon header">
+            <i class="photo icon"></i>
+            <div class="content">
+                Photo Management
+            </div>
+        </h2>
+    </div><!--
+    --><div searchtab style="display:inline-block; width:75%; text-align:right;vertical-align: text-bottom;" optionList="tag,scopeId,location,photoId" sender="photomanagement"></div>
+
+    <ul id="photoManagement_imageList" masonry="{ transitionDuration: '0s' }">
+        <li class="photoManagement_oneImage masonry-brick ui olive card" ng-repeat="image in imageCtr.imageArr">
+
+            <div class="content">
+                <div class="right floated meta" ng-bind="{{Date.now(image.uploadTime)}}"></div>
+                <img class="ui avatar image" ng-src="{{image.owner.avatar}}">{{image.owner.name}}
+            </div>
+            <div class="image photoContainer">
+                <img ng-src="{{image.retina.fileName}}">
+            </div>
+            <div class="content">
+
+                <div ><label>PhotoID:</label> {{image.id}}</div>
+                <div ><label>ScopeID:</label>{{image.scope.id}}</div>
+                <div ><label>Owner:</label>{{image.owner.name}}</div>
+                <div ><label>OwnerID:</label>{{image.owner.id}}</div>
+
+            </div>
+
+            <div class="extra content">
+                <button class="ui black tiny basic button" ng-click="showDetailPhoto(image.id)">
+                    <i class="pencil grey icon"></i>
+                    Edit
+                </button>
+                <button class="ui black tiny basic button" ng-click="deletePhoto(image.id,$index)">
+                    <i class="trash icon"></i>
+                    Delete
+                </button>
+            </div>
+
+        </li>
+
+    </ul>
+    <div ui-view></div>
+
+</div>

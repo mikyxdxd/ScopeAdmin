@@ -1,0 +1,66 @@
+#messageBox_body{
+
+    width: 200px;
+    height: 150px;
+    font-size: 17px;
+    position: fixed;
+    background: white;
+    background: #EC5D3B;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 1%;
+    color: white;
+    border-radius: 5px;
+    transform:translateY(0px);
+    opacity: 1;
+}
+
+#messageBox_body.ng-hide-remove, #messageBox_body.ng-hide-add{
+
+    transition:all ease 0.5s;
+}
+
+#messageBox_body.ng-hide{
+
+    opacity: 0;
+    transform:translateY(10px);
+
+}
+
+
+
+#messageBox_buttons{
+
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    margin-right: 10px;
+}
+
+#messageBox_buttons button{
+
+    background-color: transparent;
+    border: 1px solid white;
+    font-weight: bolder;
+}
+
+#messageBox_buttons button:active{
+
+    outline-width: 0px;
+
+}
+
+#messageBox_buttons button:focus{
+
+    outline-width:  0px;
+}
+
+#messageBox_buttons button:hover{
+
+    background-color: white;
+    color:black;
+}
